@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: Eco Trivia API
+  description: エコ・トリビアアプリのバックエンドAPIです。
+  version: 1.0.0
+servers:
+  - url: https://api.eco-trivia-app.com/v1
+    description: 本番サーバー
+
+paths:
+  /quiz/today:
+    get:
+      summary: 今日のクイズを取得
+      description: 毎日ランダムに選ばれた一つのクイズと関連するトリビアを取得します。
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Quiz"
+        "404":
+          description: クイズが見つからない
+
+  /quiz/{id}/answer:
+    post:
+      summary: クイズの回答を送信
+      description: 指定されたクイズIDに対して回答を送信し、正解かどうかを返します。
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: クイズID
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userAnswer:
+                  type: string
+                  description: ユーザーの回答
+      responses:
+        "200":
+          description: 回答結果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isCorrect:
+                    type: boolean
+                    description: 正解なら true
+        "400":
+          description: 無効なリクエスト
+
+components:
+  schemas:
+    Quiz:
+      type: object
+      properties:
+        id:
+          type: integer
+        questionText:
+          type: string
+        questionType:
+          type: string
+          enum: ["4-choice", "true-false"]
+        tags:
+          type: array
+          items:
+            type: string
