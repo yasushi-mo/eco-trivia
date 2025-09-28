@@ -10,9 +10,9 @@
 
 ### 1.1 モノレポ・環境設定
 
-[ ] 1.1.1 プロジェクトリポジトリ（GitHub）の作成
+- [x] 1.1.1 プロジェクトリポジトリ（GitHub）の作成
 
-[ ] 1.1.2 npm workspaces を使用したモノレポ構造の初期設定（/frontend, /backend, /shared）
+- [x] [1.1.2 npm workspaces を使用したモノレポ構造の初期設定（/frontend, /backend, /shared）]()
 
 [ ] 1.1.3 TypeScript 設定ファイル (tsconfig.json) のモノレポ全体での設定
 
