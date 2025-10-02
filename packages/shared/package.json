@@ -1,0 +1,7 @@
+{
+  "name": "@eco-trivia/shared",
+  "version": "1.0.0",
+  "description": "フロントエンドとバックエンドの共通型とユーティリティ",
+  "private": true,
+  "type": "module"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "eco-trivia",
+  "version": "1.0.0",
+  "description": "環境トリビアアプリのモノレポ",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2"
+  }
+}
