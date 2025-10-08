@@ -1,0 +1,7 @@
+{
+  "name": "@eco-trivia/frontend",
+  "version": "1.0.0",
+  "description": "React/Vite フロントエンドアプリケーション",
+  "private": true,
+  "type": "module"
+}

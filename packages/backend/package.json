@@ -1,0 +1,7 @@
+{
+  "name": "@eco-trivia/backend",
+  "version": "1.0.0",
+  "description": "Express.js API サーバー",
+  "private": true,
+  "type": "module"
+}
