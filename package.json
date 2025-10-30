@@ -10,5 +10,9 @@
     "frontend",
     "backend",
     "shared"
-  ]
+  ],
+  "volta": {
+    "node": "24.11.0",
+    "npm": "11.6.2"
+  }
 }
