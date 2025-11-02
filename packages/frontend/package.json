@@ -1,0 +1,10 @@
+{
+  "name": "@eco-trivia/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  }
+}

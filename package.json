@@ -8,9 +8,7 @@
     "test": "npm run test --workspaces"
   },
   "workspaces": [
-    "frontend",
-    "backend",
-    "shared"
+    "packages/*"
   ],
   "volta": {
     "node": "24.11.0",
