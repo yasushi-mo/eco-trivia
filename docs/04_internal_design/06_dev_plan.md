@@ -14,13 +14,15 @@
 
 - [x] [1.1.2 npm workspaces を使用したモノレポ構造の初期設定（/frontend, /backend, /shared）](https://github.com/yasushi-mo/eco-trivia/pull/4)
 
-- [ ] 1.1.3 各パッケージ (/frontend, /backend, /shared) に package.json を作成し、パッケージ名と初期設定を定義
+- [x] [1.1.3 ルートに package.json を作成し、パッケージ名と初期設定を定義](https://github.com/yasushi-mo/eco-trivia/pull/6)
 
-- [ ] 1.1.4 TypeScript 設定ファイル (tsconfig.json) のモノレポ全体での設定
+- [ ] 1.1.4 各パッケージ (/frontend, /backend, /shared) に package.json を作成し、パッケージ名と初期設定を定義
 
-- [ ] 1.1.5 ESLint/Prettier の設定とコードフォーマットの自動化設定
+- [ ] 1.1.5 TypeScript 設定ファイル (tsconfig.json) のモノレポ全体での設定
 
-- [ ] 1.1.6 開発環境構築ガイド (DEV.md) の作成開始
+- [ ] 1.1.6 ESLint/Prettier の設定とコードフォーマットの自動化設定
+
+- [ ] 1.1.7 開発環境構築ガイド (DEV.md) の作成開始
 
 ### 1.2 データベースと Docker
 
