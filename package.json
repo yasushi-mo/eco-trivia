@@ -1,15 +1,14 @@
 {
   "name": "eco-trivia",
   "version": "1.0.0",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces"
   },
   "workspaces": [
-    "frontend",
-    "backend",
-    "shared"
+    "packages/*"
   ],
   "volta": {
     "node": "24.11.0",
