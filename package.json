@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces"
+    "test": "npm run test --workspaces",
+    "format": "npx prettier . --write"
   },
   "workspaces": [
     "packages/*"
@@ -13,5 +14,15 @@
   "volta": {
     "node": "24.11.0",
     "npm": "11.6.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "prettier": "^3.6.2"
   }
 }
