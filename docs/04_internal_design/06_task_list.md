@@ -18,7 +18,7 @@
 
 - [x] [1.1.4 各パッケージ (/frontend, /backend, /shared) に package.json を作成し、パッケージ名と初期設定を定義](https://github.com/yasushi-mo/eco-trivia/pull/7)
 
-- [ ] 1.1.5 TypeScript 設定ファイル (`tsconfig.json`) のモノレポ全体での設定
+- [x] [1.1.5 TypeScript 設定ファイル (`tsconfig.json`) のモノレポ全体での設定](https://github.com/yasushi-mo/eco-trivia/pull/8)
 
 - [ ] 1.1.6 ESLint/Prettier の設定とコードフォーマットの自動化設定
 
