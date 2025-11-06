@@ -20,11 +20,11 @@
 
 - [x] [1.1.5 TypeScript 設定ファイル (`tsconfig.json`) のモノレポ全体での設定](https://github.com/yasushi-mo/eco-trivia/pull/8)
 
-- [ ] 1.1.6 ESLint/Prettier の設定とコードフォーマットの自動化設定
+- [x] [1.1.6 ESLint/Prettier の設定とコードフォーマットの自動化設定](https://github.com/yasushi-mo/eco-trivia/pull/9)
 
 - [ ] 1.1.7 開発環境構築ガイド (`DEV.md`) の作成開始
 
-### 1.2 データベースと Docker (変更なし)
+### 1.2 データベースと Docker
 
 - [ ] 1.2.1 Docker 環境構築（PostgreSQL と Node.js コンテナの定義）
 
