@@ -1,0 +1,18 @@
+# Ignore artifacts:
+build
+coverage
+dist
+out
+
+# Dependencies
+node_modules
+
+# Configuration and Metadata
+.cache
+tmp
+.idea
+.vscode
+Dockerfile
+
+# TypeScript build files (critical for performance)
+**/*.tsbuildinfo
