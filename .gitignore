@@ -4,7 +4,6 @@ node_modules
 # 2. ビルド成果物（tscやWebpackなどで生成されるファイル）
 # shared/backend/frontend のdistディレクトリは全て除外
 dist
-**/*.js
 **/*.d.ts
 !shared/dist # sharedパッケージのビルド成果物は、package.jsonのfilesで管理されるため、通常は除外不要ですが、明示的に含めるか否かをチームで決定します。
              # モノレポ内リンクでは追跡不要ですが、安全策として全て除外が基本です。
