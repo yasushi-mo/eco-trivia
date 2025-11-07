@@ -22,11 +22,11 @@
 
 - [x] [1.1.6 ESLint/Prettier の設定とコードフォーマットの自動化設定](https://github.com/yasushi-mo/eco-trivia/pull/9)
 
-- [ ] 1.1.7 開発環境構築ガイド (`DEV.md`) の作成開始
+- [x] [1.1.7 開発環境構築ガイド (`DEV.md`) の作成開始](https://github.com/yasushi-mo/eco-trivia/pull/10)
 
 ### 1.2 データベースと Docker
 
-- [ ] 1.2.1 Docker 環境構築（PostgreSQL と Node.js コンテナの定義）
+- [x] [1.2.1 Docker 環境構築（PostgreSQL と Node.js コンテナの定義）]()
 
 - [ ] 1.2.2 データベースの環境変数設定（ローカル/Render 接続情報）
 
@@ -41,6 +41,8 @@
 - [ ] 2.1.2 データベースマイグレーションの実行と PostgreSQL への初期適用
 
 - [ ] 2.1.3 データアクセス層（Repository）のインターフェース定義
+
+- [ ] 2.1.4 本番用 Dockerfile の作成
 
 ### 2.2 ビジネスロジック実装
 

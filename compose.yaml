@@ -1,0 +1,49 @@
+services:
+  app:
+    container_name: eco-trivia-app
+    build:
+      context: . # ビルドコンテキストはモノレポのルート
+      dockerfile: Dockerfile.dev # 開発用のDockerfileを使用
+    ports:
+      - "5173:5173" # フロントエンド (Vite)
+      - "8080:8080" # バックエンド (Express)
+    # Node.jsの変更を即座に反映させるため、ホストとコンテナ間でコードを同期
+    volumes:
+      # 1. ソースコードのバインドマウント
+      - type: bind
+        source: ./
+        target: /app
+      # 2. node_modulesをホストと同期させないための匿名ボリューム
+      #    これにより、コンテナ内でインストールされた依存関係が優先され、ホストのnode_modulesは無視される。
+      - type: volume
+        source: node_modules_cache
+        target: /app/node_modules
+    environment:
+      # 環境変数設定: dbサービス名をホスト名として使用
+      DATABASE_URL: postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-password}@db:5432/${POSTGRES_DB:-eco_trivia_db}?schema=public
+      PORT: 8080
+    # 【修正点】コンテナが終了せずに待機するためのコマンド
+    command: sh -c "while true; do sleep 3600; done"
+    # dbサービスが起動してからappサービスを起動
+    depends_on:
+      - db
+  db:
+    container_name: eco-trivia-db
+    image: postgres:18
+    ports:
+      - "5432:5432" # ホストの5432ポートをコンテナにマッピング
+    volumes:
+      # データ永続化用ボリューム
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql
+    environment:
+      # .envファイルから環境変数を読み込む
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-eco_trivia_db}
+    restart: always
+
+volumes:
+  postgres_data:
+  node_modules_cache: {} # node_modulesを除外するための匿名ボリューム
