@@ -1,0 +1,38 @@
+# 開発環境で使用するNode.jsコンテナの定義
+# ビルド時間を短縮するため、npm workspacesのキャッシュを最大限活用します。
+
+# 1. ベースイメージ: Node.js LTS (v24.11.0) を使用
+# package.jsonのvolta設定に合わせてバージョンを24に変更します。
+FROM node:24-alpine
+
+# 2. 依存関係のキャッシュ戦略
+# 作業ディレクトリを設定
+WORKDIR /app
+
+# ルートのpackage.jsonとpackage-lock.jsonをコピー
+# これらが変更されない限り、npm installのレイヤーはキャッシュされます。
+COPY package.json package-lock.json ./
+# workspacesのルート設定をコピー
+COPY tsconfig.json ./
+
+# 各パッケージのpackage.jsonをコピー (依存関係の情報を取得するため)
+# Dockerが効率的にキャッシュできるように、globパターンを使用
+COPY packages/*/package.json packages/
+COPY packages/*/tsconfig.json packages/
+
+# 3. 依存関係のインストール (最重要: キャッシュレイヤー)
+# workspaces全体でnpm installを実行
+RUN npm install
+
+# 4. ソースコードのコピー
+# 依存関係のインストールが完了した後、すべてのソースコードをコピー
+COPY . .
+
+# 5. 実行環境の設定
+# Node.js開発サーバーがリッスンするポートを公開
+# フロントエンド（Viteのデフォルト: 5173）とバックエンド（Expressのデフォルト: 8080）
+EXPOSE 5173 8080
+
+# 6. エントリーポイントの定義
+# このコンテナは主にdocker-compose経由で各サービスを起動するために使用されます。
+CMD ["npm", "run", "dev"]
