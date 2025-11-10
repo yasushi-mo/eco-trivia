@@ -29,7 +29,7 @@ services:
       - db
   db:
     container_name: eco-trivia-db
-    image: postgres:18
+    image: postgres:17.6
     ports:
       - "5432:5432" # ホストの5432ポートをコンテナにマッピング
     volumes:

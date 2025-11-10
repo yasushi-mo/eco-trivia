@@ -26,11 +26,11 @@
 
 ### 1.2 データベースと Docker
 
-- [x] [1.2.1 Docker 環境構築（PostgreSQL と Node.js コンテナの定義）]()
+- [x] [1.2.1 Docker 環境構築（PostgreSQL と Node.js コンテナの定義）](https://github.com/yasushi-mo/eco-trivia/pull/11)
 
-- [ ] 1.2.2 データベースの環境変数設定（ローカル/Render 接続情報）
+- [x] 1.2.2 データベースの環境変数設定（ローカル/Render 接続情報）
 
-- [ ] 1.2.3 Render アカウント作成と PostgreSQL インスタンスのプロビジョニング
+- [x] 1.2.3 Render アカウント作成と PostgreSQL インスタンスのプロビジョニング
 
 ## 2. フェーズ 2: バックエンド開発とデータ層 (7 日間目安)
 
