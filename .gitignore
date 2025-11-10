@@ -20,3 +20,6 @@ npm-debug.log*
 # 5. 環境ファイル
 .env
 .env.*
+
+# 6. Prisma
+*generated
