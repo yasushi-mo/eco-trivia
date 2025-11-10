@@ -36,9 +36,9 @@
 
 ### 2.1 データモデリングとインターフェース (準備)
 
-- [ ] [2.1.1 Prisma スキーマの定義（Quizzes, Trivia, Tags, QuizTags）](https://github.com/yasushi-mo/eco-trivia/pull/12)
+- [x] [2.1.1 Prisma スキーマの定義（Quizzes, Trivia, Tags, QuizTags）](https://github.com/yasushi-mo/eco-trivia/pull/12)
 
-- [ ] 2.1.2 データベースマイグレーションの実行と PostgreSQL への初期適用
+- [x] 2.1.2 データベースマイグレーションの実行と PostgreSQL への初期適用
 
 - [ ] 2.1.3 データアクセス層（Repository）のインターフェース定義
 
