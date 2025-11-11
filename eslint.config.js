@@ -1,94 +1,103 @@
 import globals from "globals";
-import pluginJs from "@eslint/js";
+import js from "@eslint/js";
 import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginJsxA11y from "eslint-plugin-jsx-a11y";
-import prettierConfig from "eslint-config-prettier";
+import react from "eslint-plugin-react";
 
 /**
- * 1. TypeScript プロジェクト全体に型チェックを適用するための設定
- * tseslint.config() の呼び出しを外し、設定オブジェクトの配列として結合する
+ * React + TypeScript 環境のための ESLint Flat Config 設定ファイル (v2)
+ *
+ * モノレポ構造と型情報に基づくLint (Typed Linting) に対応しています。
  */
-const tsBaseConfig = {
-  files: ["**/*.{ts,tsx}"], // 対象ファイルをTypeScriptに限定
-  parserOptions: {
-    project: true, // tsconfig.json の references を使用
-    tsconfigRootDir: import.meta.dirname, // ルートを起点とする
-  },
-  // 型情報を使用した推奨ルールセットを適用
-  extends: [...tseslint.configs.recommendedTypeChecked],
-  // TypeScriptファイル内でブラウザAPIのグローバルを許可
-  // window、document、setTimeout、fetch などの、ブラウザが提供するグローバルなオブジェクトや関数を使っても、型エラーや「未定義の変数です」というエラーを出さないようにする
-  languageOptions: {
-    globals: globals.browser,
-  },
-  rules: {
-    // TypeScriptの強力なルールを上書き・追加
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }], // 未使用変数のルール
-  },
-};
-
 export default [
-  // ----------------------------------------------------
-  // I. グローバル設定
-  // ----------------------------------------------------
+  // -----------------------------------------------------------
+  // 1. 無視するファイル/ディレクトリの設定
+  // -----------------------------------------------------------
   {
-    // ESLintが無視するファイルやディレクトリを定義
+    // ビルド出力、依存関係、設定ファイル、そして生成されたPrismaクライアントファイルを無視
     ignores: [
-      "**/node_modules",
-      "**/dist",
-      "**/*.tsbuildinfo",
-      "coverage",
-      "build",
-      ".prettierignore",
+      "dist/",
+      "node_modules/",
+      "*.config.js",
+      "*.config.cjs",
+      // 生成されたPrismaクライアントファイルを無視
+      "packages/backend/generated/",
     ],
   },
 
-  // ----------------------------------------------------
-  // II. 基本ルールとTSルール
-  // ----------------------------------------------------
-  // 1. JavaScriptの推奨ルール
-  pluginJs.configs.recommended,
+  // -----------------------------------------------------------
+  // 2. 標準的なJavaScriptルールと環境設定
+  // -----------------------------------------------------------
+  // ESLintのベース推奨ルールを適用
+  js.configs.recommended,
 
-  // 2. TypeScript（型チェック付き）をプロジェクト全体に適用
-  tsBaseConfig,
-
-  // 3. Prettierとの連携 (最も最後に配置し、整形ルールをすべて無効化)
-  prettierConfig,
-
-  // ----------------------------------------------------
-  // III. ワークスペース固有の設定
-  // ----------------------------------------------------
-
-  // 4. React / Frontend固有の設定
   {
-    files: ["packages/frontend/**/*.{ts,tsx}"], // frontend フォルダ内のみ適用
-    plugins: {
-      react: pluginReact,
-      "react-hooks": pluginReactHooks,
-      "jsx-a11y": pluginJsxA11y,
+    // すべての対象ファイルに適用
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    languageOptions: {
+      // ブラウザ環境のグローバル変数を有効化
+      globals: globals.browser,
     },
-    settings: {
-      react: { version: "detect" },
-    },
+    // その他の共通ルール
     rules: {
-      // Reactの推奨ルールを適用
-      ...pluginReact.configs.recommended.rules,
-      ...pluginReactHooks.configs.recommended.rules,
-      ...pluginJsxA11y.configs.recommended.rules,
-
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
+      semi: ["error", "always"],
     },
   },
 
-  // 5. Backend / Shared固有の設定 (Node.jsのグローバルを許可)
+  // -----------------------------------------------------------
+  // 3. TypeScript設定 (ts-eslint)
+  // -----------------------------------------------------------
+  // TypeScript-ESLintの推奨設定を適用
+  ...tseslint.configs.recommended,
+
   {
-    files: ["packages/{backend,shared}/**/*.{ts,tsx}"],
+    // TypeScript/TSXファイルのみを対象
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
-      globals: globals.node, // 'process', 'Buffer' などのNode.jsグローバルを許可
+      // TypeScriptファイルを解析するためのパーサーを指定
+      parser: tseslint.parser,
+      parserOptions: {
+        // MonorepoやProject References環境でのエラーを回避するため、
+        // Language Serviceを利用して適切なtsconfigを自動で検出する
+        projectService: true, // <-- ★ここを修正しました
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {
+      // JSの`no-unused-vars`を無効化し、TSの同等ルールを有効化
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
+  },
+
+  // -----------------------------------------------------------
+  // 4. React設定 (eslint-plugin-react)
+  // -----------------------------------------------------------
+  {
+    // JSX/TSXファイルのみを対象
+    files: ["**/*.{jsx,tsx}"],
+    plugins: {
+      react: react,
+    },
+    settings: {
+      // Reactのバージョンを自動検出 (ワーニング解消)
+      react: {
+        version: "detect",
+      },
+    },
+    rules: {
+      // Reactプラグインの推奨ルールを適用
+      ...react.configs.recommended.rules,
+
+      // React 17+の新しいJSXトランスフォーム (jsx-runtime) に対応
+      ...react.configs["jsx-runtime"].rules,
+
+      // target="_blank" を使用する場合は rel="noreferrer" を強制 (セキュリティのため)
+      "react/jsx-no-target-blank": "error",
     },
   },
 ];
