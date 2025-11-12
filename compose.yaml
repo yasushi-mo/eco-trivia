@@ -3,7 +3,8 @@ services:
     container_name: eco-trivia-app
     build:
       context: . # ビルドコンテキストはモノレポのルート
-      dockerfile: Dockerfile.dev # 開発用のDockerfileを使用
+      dockerfile: Dockerfile
+      target: development
     ports:
       - "5173:5173" # フロントエンド (Vite)
       - "8080:8080" # バックエンド (Express)
