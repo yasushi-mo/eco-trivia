@@ -42,11 +42,11 @@
 
 - [x] [2.1.3 データアクセス層（Repository）のインターフェース定義](https://github.com/yasushi-mo/eco-trivia/pull/14)
 
-- [ ] 2.1.4 本番用 Dockerfile の作成
+- [x] [2.1.4 本番用 Dockerfile の作成]
 
 ### 2.2 ビジネスロジック実装
 
-- [ ] 2.2.1 QuizRepository の**ユニットテスト**実装（モックを用いたデータ取得メソッド）
+- [x] [2.2.1 QuizRepository の**ユニットテスト**実装（モックを用いたデータ取得メソッド）]()
 
 - [ ] 2.2.2 QuizRepository の**実装**（Prisma クライアント利用）
 
