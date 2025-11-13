@@ -14,87 +14,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ===========================================
-// 1. Quiz モデル (クイズ)
-// ===========================================
-model Quiz {
-  // SERIAL, PRIMARY KEY
-  id              Int       @id @default(autoincrement())
-  // TEXT, NOT NULL
-  question_text   String
-  // TEXT, NOT NULL
-  answer          String
-  // TEXT, NOT NULL (例: '4-choice', 'true-false')
-  question_type   String
-  // TIMESTAMPTZ, NOT NULL, DEFAULT now()
-  created_at      DateTime  @default(now())
-  // TIMESTAMPTZ, NOT NULL, DEFAULT now()
-  updated_at      DateTime  @updatedAt
-
-  // リレーション: Trivia (1対1)
-  Trivia          Trivia?
-  // リレーション: QuizTag (多対多の中間テーブル)
-  QuizTags        QuizTag[]
-
-  // データベースのテーブル名として 'Quizzes' を指定
-  @@map("Quizzes")
-}
-
-// ===========================================
-// 2. Trivia モデル (トリビア)
-// ===========================================
 model Trivia {
-  // SERIAL, PRIMARY KEY
-  id               Int      @id @default(autoincrement())
-  // TEXT, NOT NULL
-  explanation_text String
-  // INTEGER, NOT NULL, UNIQUE, FOREIGN KEY (1対1の関係を示すUNIQUE制約を付与)
-  quiz_id          Int      @unique
-  // Quiz モデルへのリレーション定義
-  quiz             Quiz     @relation(fields: [quiz_id], references: [id], onDelete: Cascade)
-  // TIMESTAMPTZ, NOT NULL, DEFAULT now()
-  created_at       DateTime @default(now())
-  // TIMESTAMPTZ, NOT NULL, DEFAULT now()
-  updated_at       DateTime @updatedAt
-
-  @@map("Trivia")
-}
-
-// ===========================================
-// 3. Tag モデル (タグ)
-// ===========================================
-model Tag {
-  // SERIAL, PRIMARY KEY
-  id          Int       @id @default(autoincrement())
-  // TEXT, NOT NULL, UNIQUE
-  name        String    @unique
-  // TIMESTAMPTZ, NOT NULL, DEFAULT now()
-  created_at  DateTime  @default(now())
-  // TIMESTAMPTZ, NOT NULL, DEFAULT now()
-  updated_at  DateTime  @updatedAt
-
-  // リレーション: QuizTag (多対多の中間テーブル)
-  QuizTags    QuizTag[]
-
-  // データベースのテーブル名として 'Tags' を指定
-  @@map("Tags")
-}
-
-// ===========================================
-// 4. QuizTag モデル (クイズとタグの関連付け)
-// ===========================================
-model QuizTag {
-  // INTEGER, PRIMARY KEY, FOREIGN KEY
-  quizId    Int
-  // INTEGER, PRIMARY KEY, FOREIGN KEY
-  tagId     Int
-
-  // リレーション定義
-  quiz      Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
-  tag       Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
-
-  // 複合プライマリキーの定義
-  @@id([quizId, tagId])
-  // データベースのテーブル名として 'QuizTags' を指定
-  @@map("QuizTags")
+  id         Int      @id @default(autoincrement())
+  text       String   @db.Text
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @updatedAt @db.Timestamptz(6)
 }
