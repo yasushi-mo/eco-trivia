@@ -30,7 +30,7 @@
 
 - [x] 2.1.1 Prisma スキーマの定義（Trivia のみ）
 - [x] [2.1.2 データベースマイグレーションの実行と PostgreSQL への適用](https://github.com/yasushi-mo/eco-trivia/pull/18)
-- [x] 2.1.3 共通型定義
+- [x] [2.1.3 共通型定義](https://github.com/yasushi-mo/eco-trivia/pull/19)
 
 ### 2.2 ビジネスロジック実装 (ランダム取得に特化)
 

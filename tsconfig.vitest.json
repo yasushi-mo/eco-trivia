@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    // Vitest設定ファイルはトランスパイルしない
+    "noEmit": true,
+    // Vitest環境に必要な型定義を含める
+    "types": ["vitest/globals", "node"]
+  },
+  "include": [
+    // vitest.config.tsのみを対象とする
+    "vitest.config.ts"
+  ]
+}
