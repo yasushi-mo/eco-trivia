@@ -1,75 +1,55 @@
-openapi: 3.0.0
 info:
-  title: Eco Trivia API
-  description: エコ・トリビアアプリのバックエンドAPIです。
+  title: Eco Trivia Viewer API
+  description: ランダムなエコ・トリビアを表示するためのバックエンドAPIです。
   version: 1.0.0
 servers:
   - url: https://api.eco-trivia-app.com/v1
     description: 本番サーバー
 
 paths:
-  /quiz/today:
+  /trivia/random:
     get:
-      summary: 今日のクイズを取得
-      description: 毎日ランダムに選ばれた一つのクイズと関連するトリビアを取得します。
+      summary: ランダムなトリビアを一件取得
+      description: データベースから一件のトリビアレコードをランダムに選択して取得します。
       responses:
         "200":
-          description: 成功
+          description: 成功 - ランダムに選択されたトリビアデータ
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Quiz"
+                $ref: "#/components/schemas/Trivia"
         "404":
-          description: クイズが見つからない
-
-  /quiz/{id}/answer:
-    post:
-      summary: クイズの回答を送信
-      description: 指定されたクイズIDに対して回答を送信し、正解かどうかを返します。
-      parameters:
-        - name: id
-          in: path
-          required: true
-          description: クイズID
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                userAnswer:
-                  type: string
-                  description: ユーザーの回答
-      responses:
-        "200":
-          description: 回答結果
+          description: トリビアデータがデータベースに見つからない
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  isCorrect:
-                    type: boolean
-                    description: 正解なら true
-        "400":
-          description: 無効なリクエスト
+                  message:
+                    type: string
+                    example: No trivia found in the database.
+        "500":
+          description: サーバー内部エラー
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: An unexpected error occurred.
 
 components:
   schemas:
-    Quiz:
+    Trivia:
       type: object
+      description: ランダムに表示されるエコ・トリビアのデータ構造
       properties:
         id:
           type: integer
-        questionText:
+          description: トリビアの一意なID
+          example: 42
+        text:
           type: string
-        questionType:
-          type: string
-          enum: ["4-choice", "true-false"]
-        tags:
-          type: array
-          items:
-            type: string
+          description: 100文字以内のトリビア解説文
+          example: "平均的な日本人一人あたりのプラスチック消費量は、世界で米国に次ぐ第2位です。"

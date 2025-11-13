@@ -11,104 +11,60 @@
 ### 1.1 モノレポ・環境設定
 
 - [x] 1.1.1 プロジェクトリポジトリ（GitHub）の作成
-
-- [x] [1.1.2 npm workspaces を使用したモノレポ構造の初期設定（/frontend, /backend, /shared）](https://github.com/yasushi-mo/eco-trivia/pull/4)
-
-- [x] [1.1.3 ルートに package.json を作成し、パッケージ名と初期設定を定義](https://github.com/yasushi-mo/eco-trivia/pull/6)
-
-- [x] [1.1.4 各パッケージ (/frontend, /backend, /shared) に package.json を作成し、パッケージ名と初期設定を定義](https://github.com/yasushi-mo/eco-trivia/pull/7)
-
-- [x] [1.1.5 TypeScript 設定ファイル (`tsconfig.json`) のモノレポ全体での設定](https://github.com/yasushi-mo/eco-trivia/pull/8)
-
-- [x] [1.1.6 ESLint/Prettier の設定とコードフォーマットの自動化設定](https://github.com/yasushi-mo/eco-trivia/pull/9)
-
-- [x] [1.1.7 開発環境構築ガイド (`DEV.md`) の作成開始](https://github.com/yasushi-mo/eco-trivia/pull/10)
+- [x] 1.1.2 npm workspaces を使用したモノレポ構造の初期設定（/frontend, /backend, /shared）
+- [x] 1.1.3 ルートに package.json を作成し、パッケージ名と初期設定を定義
+- [x] 1.1.4 各パッケージ (/frontend, /backend, /shared) に package.json を作成し、パッケージ名と初期設定を定義
+- [x] 1.1.5 TypeScript 設定ファイル (`tsconfig.json`) のモノレポ全体での設定
+- [x] 1.1.6 ESLint/Prettier の設定とコードフォーマットの自動化設定
+- [x] 1.1.7 開発環境構築ガイド (`DEV.md`) の作成開始
 
 ### 1.2 データベースと Docker
 
-- [x] [1.2.1 Docker 環境構築（PostgreSQL と Node.js コンテナの定義）](https://github.com/yasushi-mo/eco-trivia/pull/11)
-
+- [x] 1.2.1 Docker 環境構築（PostgreSQL と Node.js コンテナの定義）
 - [x] 1.2.2 データベースの環境変数設定（ローカル/Render 接続情報）
-
 - [x] 1.2.3 Render アカウント作成と PostgreSQL インスタンスのプロビジョニング
 
-## 2. フェーズ 2: バックエンド開発とデータ層 (7 日間目安)
+## 2. フェーズ 2: バックエンド開発とデータ層 (4 日間目安)
 
 ### 2.1 データモデリングとインターフェース (準備)
 
-- [x] [2.1.1 Prisma スキーマの定義（Quizzes, Trivia, Tags, QuizTags）](https://github.com/yasushi-mo/eco-trivia/pull/12)
-
-- [x] [2.1.2 データベースマイグレーションの実行と PostgreSQL への初期適用](https://github.com/yasushi-mo/eco-trivia/pull/13)
-
-- [x] [2.1.3 データアクセス層（Repository）のインターフェース定義](https://github.com/yasushi-mo/eco-trivia/pull/14)
-
+- [ ] 2.1.1 Prisma スキーマの定義（Trivia のみ）
+- [ ] 2.1.2 データベースマイグレーションの実行と PostgreSQL への適用（新スキーマ）
+- [ ] 2.1.3 TriviaRepository (データアクセス層) のインターフェース定義
 - [ ] 2.1.4 本番用 Dockerfile の作成
 
-### 2.2 ビジネスロジック実装
+### 2.2 ビジネスロジック実装 (ランダム取得に特化)
 
-- [ ] 2.2.1 QuizRepository の**ユニットテスト**実装（モックを用いたデータ取得メソッド）
-
-- [ ] 2.2.2 QuizRepository の**実装**（Prisma クライアント利用）
-
-- [ ] 2.2.3 QuizService の**インターフェース定義**（ランダムクイズ選択、正誤判定）
-
-- [ ] 2.2.4 QuizService の**ユニットテスト**実装（ランダムな日替わりクイズ選択ロジック）
-
-- [ ] 2.2.5 QuizService の**実装**（ランダムな日替わりクイズ選択ロジック）
-
-- [ ] 2.2.6 QuizService の**ユニットテスト**実装（回答の正誤判定ロジック）
-
-- [ ] 2.2.7 QuizService の**実装**（回答の正誤判定ロジック）
+- [ ] 2.2.1 TriviaRepository の**ユニットテスト**実装（モックを用いたランダム取得メソッド）
+- [ ] 2.2.2 TriviaRepository の**実装**（Prisma クライアント利用、ランダム取得ロジック）
+- [ ] 2.2.3 TriviaService の**インターフェース定義**（ランダムトリビア取得）
+- [ ] 2.2.4 TriviaService の**ユニットテスト**実装（ランダムトリビア取得ロジック）
+- [ ] 2.2.5 TriviaService の**実装**（ランダムトリビア取得ロジック）
 
 ### 2.3 API 開発 (TDD 適用)
 
-- [ ] 2.3.1 QuizController の定義と Express ルートの設定
+- [ ] 2.3.1 TriviaController の定義と Express ルートの設定
+- [ ] 2.3.2 API エンドポイント /trivia/random (GET) のテストコード作成
+- [ ] 2.3.3 API エンドポイント /trivia/random (GET) の実装
 
-- [ ] 2.3.2 Zod を使用した API リクエストの入力バリデーション実装
-
-- [ ] 2.3.3 API エンドポイント /quiz/today (GET) のテストコード作成
-
-- [ ] 2.3.4 API エンドポイント /quiz/today (GET) の実装
-
-- [ ] 2.3.5 API エンドポイント /quiz/{id}/answer (POST) のテストコード作成
-
-- [ ] 2.3.6 API エンドポイント /quiz/{id}/answer (POST) の実装
-
-## 3. フェーズ 3: フロントエンド開発 (8 日間目安)
+## 3. フェーズ 3: フロントエンド開発 (5 日間目安)
 
 ### 3.1 ベース設定とテスト環境
 
 - [ ] 3.1.1 Vitest のセットアップとフロントエンドの単体テスト実装の基盤構築
-
 - [ ] 3.1.2 React アプリケーションの初期設定と TypeScript 連携（残作業）
-
 - [ ] 3.1.3 ベースとなる UI テーマ（配色、フォント）の適用
+- [ ] 3.1.4 SWR/Axios を使用した API クライアントの作成（`/trivia/random` 用）
+- [ ] 3.1.5 React Router の**削除**とシングルページ構成への整理
 
-- [ ] 3.1.4 SWR/Axios を使用した API クライアントの作成
-
-- [ ] 3.1.5 React Router を使用したルーティング設定（クイズ画面、結果画面）
-
-### 3.2 UI コンポーネント実装
+### 3.2 UI コンポーネント実装 (単一画面構成)
 
 - [ ] 3.2.1 共通コンポーネントのテストコード作成（Button, LoadingSpinner など）
-
 - [ ] 3.2.2 共通コンポーネントの実装（Header, Layout, Button, LoadingSpinner）
+- [ ] 3.2.3 TriviaViewer の UI/ロジックの**テストコード**作成（データ表示、ボタンクリック動作）
+- [ ] 3.2.4 TriviaViewer コンポーネントの実装（トリビア表示、ランダム取得ボタン、API 呼び出し）
 
-- [ ] 3.2.3 QuizScreen の UI/ロジックの**テストコード**作成（データ表示、選択肢のクリック動作）
-
-- [ ] 3.2.4 QuizScreen の主要 UI コンポーネント作成（問題文表示、選択肢、API 呼び出し）
-
-- [ ] 3.2.5 TriviaScreen の UI の**テストコード**作成（結果、解説文の表示）
-
-- [ ] 3.2.6 TriviaScreen の主要 UI コンポーネント作成（結果、解説文）
-
-### 3.3 フォームとデータ連携 (TDD 適用)
-
-- [ ] 3.3.1 React Hook Form を使用した回答フォームのテストコード作成
-
-- [ ] 3.3.2 React Hook Form を使用した回答フォームの管理と送信処理実装
-
-## 4. フェーズ 4: 統合とテスト (5 日間目安)
+## 4. フェーズ 4: 統合とテスト (4 日間目安)
 
 ### 4.1 ユニット・統合テスト (残作業)
 
@@ -117,31 +73,30 @@
 ### 4.2 E2E テスト
 
 - [ ] 4.2.1 Playwright のセットアップとブラウザ環境設定
-
-- [ ] 4.2.2 E2E テストケース作成（クイズ挑戦、回答、解説表示）
-
+- [ ] 4.2.2 E2E テストケース作成（トリビア表示、**「次のトリビアへ」**ボタン操作）
 - [ ] 4.2.3 Playwright による E2E テストの実行とデバッグ
 
-### 4.3 CI/CD 連携 (変更なし)
+### 4.3 CI/CD 連携
 
 - [ ] 4.3.1 GitHub Actions ワークフローの定義（プッシュ時の自動テスト実行）
 
-## 5. フェーズ 5: デプロイとリリース (3 日間目安) (変更なし)
+## 5. フェーズ 5: デプロイとリリース (3 日間目安)
 
 ### 5.1 コンテンツと非機能要件
 
-- [ ] 5.1.1 初期コンテンツの作成と PostgreSQL への投入（クイズ 100 問以上）
-
+- [ ] 5.1.1 初期コンテンツの作成と PostgreSQL への投入（**トリビア 100 件以上**）
 - [ ] 5.1.2 UI/UX の最終確認（外部設計書との照合）
-
 - [ ] 5.1.3 非機能要件のパフォーマンステスト（読み込み 1 秒以内を目標）
 
 ### 5.2 本番デプロイ
 
 - [ ] 5.2.1 Render へのバックエンド（Web Service）のデプロイ設定
-
 - [ ] 5.2.2 Render へのフロントエンド（Static Site）のデプロイ設定
-
 - [ ] 5.2.3 GitHub Actions を使用した Render への自動デプロイ設定の完了
-
 - [ ] 5.2.4 本番環境での最終動作確認とリリース
+
+---
+
+これで、タスクリスト全体をご確認いただけたかと思います。
+
+この計画書に基づき、次は**Prismaのスキーマ定義**の具体的な内容を作成していきましょう。
