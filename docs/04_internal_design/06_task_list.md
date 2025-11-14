@@ -29,9 +29,8 @@
 ### 2.1 データモデリングとインターフェース (準備)
 
 - [x] 2.1.1 Prisma スキーマの定義（Trivia のみ）
-- [ ] [2.1.2 データベースマイグレーションの実行と PostgreSQL への適用](https://github.com/yasushi-mo/eco-trivia/pull/18)
-- [ ] 2.1.3 TriviaRepository (データアクセス層) のインターフェース定義
-- [ ] 2.1.4 本番用 Dockerfile の作成
+- [x] [2.1.2 データベースマイグレーションの実行と PostgreSQL への適用](https://github.com/yasushi-mo/eco-trivia/pull/18)
+- [x] 2.1.3 共通型定義
 
 ### 2.2 ビジネスロジック実装 (ランダム取得に特化)
 
