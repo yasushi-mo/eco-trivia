@@ -30,12 +30,12 @@
 
 - [x] 2.1.1 Prisma スキーマの定義（Trivia のみ）
 - [x] [2.1.2 データベースマイグレーションの実行と PostgreSQL への適用](https://github.com/yasushi-mo/eco-trivia/pull/18)
-- [x] 2.1.3 共通型定義
+- [x] [2.1.3 共通型定義](https://github.com/yasushi-mo/eco-trivia/pull/19)
 
 ### 2.2 ビジネスロジック実装 (ランダム取得に特化)
 
-- [ ] 2.2.1 TriviaRepository の**ユニットテスト**実装（モックを用いたランダム取得メソッド）
-- [ ] 2.2.2 TriviaRepository の**実装**（Prisma クライアント利用、ランダム取得ロジック）
+- [x] 2.2.1 TriviaRepository の**ユニットテスト**実装（モックを用いたランダム取得メソッド）
+- [x] 2.2.2 TriviaRepository の**実装**（Prisma クライアント利用、ランダム取得ロジック）
 - [ ] 2.2.3 TriviaService の**インターフェース定義**（ランダムトリビア取得）
 - [ ] 2.2.4 TriviaService の**ユニットテスト**実装（ランダムトリビア取得ロジック）
 - [ ] 2.2.5 TriviaService の**実装**（ランダムトリビア取得ロジック）
